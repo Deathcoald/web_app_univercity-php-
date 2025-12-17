@@ -16,10 +16,8 @@ function registerUser($pdo) {
     $password = password_hash($data["password"], PASSWORD_BCRYPT);
 
     try {
-        // транзакция
         $pdo->beginTransaction();
 
-        // 1. создаём пользователя
         $stmt = $pdo->prepare(
             "INSERT INTO users (username, password) VALUES (:u, :p)"
         );
